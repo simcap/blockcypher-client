@@ -8,7 +8,7 @@ Allow usage of the [Blockcypher API](http://dev.blockcypher.com/reference.html) 
 
 ## Testing
 
-At the moment mainly integratino test hitting the live chains
+At the moment integration tests are hitting the live chains
 
     $ rake
 
