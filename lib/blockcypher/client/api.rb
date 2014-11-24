@@ -49,18 +49,20 @@ module Blockcypher
 
         def perform(verb, path, options = {})
           options.merge!(query: params)
-          response = @http.public_send("#{verb.to_s}_content", path, options) 
-          parse_json(response)
-        rescue HTTPClient::BadResponseError => e
-          raise "Unexpected http status #{e.res.status} calling '#{e.res.header.request_uri.to_s}'"
+          response = @http.public_send(verb.to_s, path, options) 
+          if not response.ok?
+            raise "Http error #{response.status} while calling '#{response.header.request_uri.to_s}'"
+          else
+            parse_json(response.body)
+          end
         end
 
         def params
           @config.token ? { token: @config.token } : {}
         end
 
-        def parse_json(response)
-          JSON.parse(response) 
+        def parse_json(body)
+          JSON.parse(body) 
         end
       end
     end
