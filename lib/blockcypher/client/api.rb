@@ -14,6 +14,10 @@ module Blockcypher
         new_call.get("/addrs/#{add}")
       end
 
+      def create_address
+        new_call.post('/addrs')
+      end
+
       def chain
         new_call.get
       end
@@ -33,14 +37,23 @@ module Blockcypher
           ) 
         end
 
+        def post(path, options = {})
+          perform(:post, path, options)
+        end
+
         def get(path = '')
-          response = @http.get_content(path, query: params)
+          perform(:get, path)
+        end
+
+        private
+
+        def perform(verb, path, options = {})
+          options.merge!(query: params)
+          response = @http.public_send("#{verb.to_s}_content", path, options) 
           parse_json(response)
         rescue HTTPClient::BadResponseError => e
           raise "Unexpected http status #{e.res.status} calling '#{e.res.header.request_uri.to_s}'"
         end
-
-        private
 
         def params
           @config.token ? { token: @config.token } : {}
