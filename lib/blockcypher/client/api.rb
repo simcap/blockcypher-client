@@ -29,9 +29,12 @@ module Blockcypher
       end
 
       class Call
+
+        attr_reader :http_client
+
         def initialize(config)
           @config = config
-          @http = HTTPClient.new(
+          @http_client = HTTPClient.new(
             base_url: @config.base_uri.to_s,
             default_header: { Accept: 'application/json' }
           ) 
@@ -49,7 +52,7 @@ module Blockcypher
 
         def perform(verb, path, options = {})
           options.merge!(query: params)
-          response = @http.public_send(verb.to_s, path, options) 
+          response = http_client.public_send(verb.to_s, path, options) 
           if not response.ok?
             raise "Http error #{response.status} while calling '#{response.header.request_uri.to_s}'"
           else
