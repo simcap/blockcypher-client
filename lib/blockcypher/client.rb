@@ -15,6 +15,10 @@ module Blockcypher
       Call.new(base_uri).get("/blocks/#{block_hash}")
     end
 
+    def address(add)
+      Call.new(base_uri).get("/addrs/#{add}")
+    end
+
     def current
       Call.new(base_uri).get
     end
