@@ -8,12 +8,19 @@ module Blockcypher
   class Client
     include Api 
 
-    attr_reader :base_uri
+    attr_reader :config
 
     def initialize(options = {})
-      @chain = options[:chain] || :main
-      @coin = options[:coin] || :btc
-      @base_uri = URI("https://api.blockcypher.com/v1/#{@coin}/#{@chain}")
+      chain = options[:chain] || :main
+      coin = options[:coin] || :btc
+      @config = Config.new(
+        URI("https://api.blockcypher.com/v1/#{coin}/#{chain}"), 
+        options[:token]
+      )
     end
+  end
+
+  Config = Struct.new(:base_uri, :token) do
+    undef []=, base_uri=, token=
   end
 end

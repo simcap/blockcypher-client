@@ -2,38 +2,49 @@ module Blockcypher
   class Client
     module Api
       def transactions(txs_hash)
-        Call.new(base_uri).get("/txs/#{txs_hash}")
+        new_call.get("/txs/#{txs_hash}")
       end
       alias_method :txs, :transactions
 
       def blocks(block_hash)
-        Call.new(base_uri).get("/blocks/#{block_hash}")
+        new_call.get("/blocks/#{block_hash}")
       end
 
       def address(add)
-        Call.new(base_uri).get("/addrs/#{add}")
+        new_call.get("/addrs/#{add}")
       end
 
       def chain
-        Call.new(base_uri).get
+        new_call.get
+      end
+
+      private 
+
+      def new_call
+        Call.new(config)
       end
 
       class Call
-        def initialize(base_uri)
+        def initialize(config)
+          @config = config
           @http = HTTPClient.new(
-            base_url: base_uri.to_s,
-            default_header: {Accept: 'application/json'}
+            base_url: @config.base_uri.to_s,
+            default_header: { Accept: 'application/json' }
           ) 
         end
 
         def get(path = '')
-          response = @http.get_content(path)
+          response = @http.get_content(path, query: params)
           parse_json(response)
         rescue HTTPClient::BadResponseError => e
           raise "Unexpected http status #{e.res.status} calling '#{e.res.header.request_uri.to_s}'"
         end
 
         private
+
+        def params
+          @config.token ? { token: @config.token } : {}
+        end
 
         def parse_json(response)
           JSON.parse(response) 
