@@ -5,7 +5,8 @@ class TestBlockcypher::Client < MiniTest::Unit::TestCase
     refute_nil ::Blockcypher::Client::VERSION
   end
 
-  def test_it_does_something_useful
+  def test_false
     assert false
+    raise 'Hell'
   end
 end
