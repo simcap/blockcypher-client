@@ -53,10 +53,10 @@ module Blockcypher
         def perform(verb, path, options = {})
           options.merge!(query: params)
           response = http_client.public_send(verb.to_s, path, options) 
-          if not response.ok?
-            raise "Http error #{response.status} while calling '#{response.header.request_uri.to_s}'"
-          else
+          if response.ok?
             parse_json(response.body)
+          else
+            raise "Http error #{response.status} while calling '#{response.header.request_uri.to_s}'"
           end
         end
 
