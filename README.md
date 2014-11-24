@@ -8,9 +8,9 @@ Allow usage of the [Blockcypher API](http://dev.blockcypher.com/reference.html) 
 
 ## Testing
 
-At the moment integration tests are hitting the live chains
-
     $ rake
+
+Tests in integration folder usually make use of mocked response files to simulate remote API
 
 ## Usage
 
