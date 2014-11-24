@@ -19,10 +19,9 @@ module Blockcypher
       Call.new(base_uri).get("/addrs/#{add}")
     end
 
-    def current
+    def chain
       Call.new(base_uri).get
     end
-    alias_method :status, :current
 
     class Call
 

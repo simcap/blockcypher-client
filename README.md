@@ -18,11 +18,11 @@ At the moment mainly integratino test hitting the live chains
 ```ruby
 # Creates new default client (coin = btc, chain = main)
 client = Blockcypher::Client.new 
-client.current                    # Return JSON for the current chain info 
+client.chain                    # Return JSON info for the current chain
 
 litecoin = Blockcypher::Client.new(coin: :ltc)
-litecoin = litecoin.transactions('4e6b95993b770e7d1084af128f971d6b44c5e32cbf3acc35eee84f69c6b4f9ea')
+json = litecoin.transactions('4e6b95993b770e7d1084af128f971d6b44c5e32cbf3acc35eee84f69c6b4f9ea')
 
- # Client for bitcoin on the test3 blockchain
+# Client for bitcoin on the test3 blockchain
 bitcoin_test = Blockcypher::Client.new(chain: :test3)
 ```
