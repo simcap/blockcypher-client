@@ -25,4 +25,7 @@ json = litecoin.transactions('4e6b95993b770e7d1084af128f971d6b44c5e32cbf3acc35ee
 
 # Client for bitcoin on the test3 blockchain
 bitcoin_test = Blockcypher::Client.new(chain: :test3)
+
+# Client with API token
+client = Blockcypher::Client.new(token: 'my_token')
 ```

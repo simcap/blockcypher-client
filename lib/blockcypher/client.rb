@@ -14,7 +14,7 @@ module Blockcypher
       chain = options[:chain] || :main
       coin = options[:coin] || :btc
       @config = Config.new(
-        URI("https://api.blockcypher.com/v1/#{coin}/#{chain}"), 
+        URI("http://api.blockcypher.com/v1/#{coin}/#{chain}"), 
         options[:token]
       )
     end
