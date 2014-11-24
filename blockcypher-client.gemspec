@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["simcap@fastmail.com"]
   spec.summary       = %q{Basic Ruby wrapper to interact with the Blockcypher API}
   spec.description   = %q{Basic Ruby wrapper to interact with the Blockcypher API}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/simcap/blockcypher-client"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

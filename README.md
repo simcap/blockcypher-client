@@ -1,29 +1,19 @@
 # Blockcypher::Client
 
-TODO: Write a gem description
+Allow usage of the [Blockcypher API](http://dev.blockcypher.com/reference.html) through Ruby
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'blockcypher-client'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install blockcypher-client
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+client = Blockcypher::Client.new  # Creates new default client (coin = btc, chain = main)
+client.current                    # Return JSON for the current chain info 
 
-## Contributing
+litecoin = Blockcypher::Client.new(coin: :ltc)
+litecoin = litecoin.transactions('4e6b95993b770e7d1084af128f971d6b44c5e32cbf3acc35eee84f69c6b4f9ea')
 
-1. Fork it ( http://github.com/<my-github-username>/blockcypher-client/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+bitcoin_test = Blockcypher::Client.new(chain: :test3) # Client for bitcoin on the test3 blockchain
+```ruby
