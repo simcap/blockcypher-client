@@ -1,0 +1,11 @@
+{
+  "name": "LTC.main",
+  "height": 681718,
+  "hash": "acbb4664907cc800eb67df625dc30f6b138c12c403684dafb574fa33943b555f",
+  "time": "2014-11-24T18:07:58.294789111Z",
+  "latest_url": "https://api.blockcypher.com/v1/ltc/main/blocks/acbb4664907cc800eb67df625dc30f6b138c12c403684dafb574fa33943b555f",
+  "previous_hash": "3a023b05ad87a8fd59f7e49b23cfee4bac6b16091e6f3f3f13aab4d97c9549bf",
+  "previous_url": "https://api.blockcypher.com/v1/ltc/main/blocks/3a023b05ad87a8fd59f7e49b23cfee4bac6b16091e6f3f3f13aab4d97c9549bf",
+  "peer_count": 223,
+  "unconfirmed_count": 0
+}

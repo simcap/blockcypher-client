@@ -1,0 +1,11 @@
+{
+  "name": "BTC.test3",
+  "height": 310403,
+  "hash": "0000000094612ae9a9e36a505bea21435fddae4afa2143d85491aec25b268297",
+  "time": "2014-11-24T18:42:31.384721097Z",
+  "latest_url": "https://api.blockcypher.com/v1/btc/test3/blocks/0000000094612ae9a9e36a505bea21435fddae4afa2143d85491aec25b268297",
+  "previous_hash": "000000008b6d772cc5ffaac274d55a6bcdfe44ce78062a5c1a92d0dd19baa047",
+  "previous_url": "https://api.blockcypher.com/v1/btc/test3/blocks/000000008b6d772cc5ffaac274d55a6bcdfe44ce78062a5c1a92d0dd19baa047",
+  "peer_count": 237,
+  "unconfirmed_count": 75
+}

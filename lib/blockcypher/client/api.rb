@@ -30,7 +30,7 @@ module Blockcypher
 
       class Call
 
-        attr_reader :http_client
+        attr_reader :http_client, :config
 
         def initialize(config)
           @config = config
@@ -61,7 +61,7 @@ module Blockcypher
         end
 
         def params
-          @config.token ? { token: @config.token } : {}
+          config.token ? { token: config.token } : {}
         end
 
         def parse_json(body)
