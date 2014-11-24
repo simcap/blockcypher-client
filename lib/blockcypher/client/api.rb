@@ -1,21 +1,4 @@
 module Blockcypher
-
-  class BadResponse < StandardError
-    def initialize(response)
-      @response = response
-    end
-
-    def message
-      "Http error #{@response.status} while calling '#{request_uri}'"
-    end
-
-    private 
-
-    def request_uri
-      "#{@response.header.request_uri.to_s}"
-    end
-  end
-
   class Client
     module Api
       def transactions(txs_hash)
@@ -46,7 +29,6 @@ module Blockcypher
       end
 
       class Call
-
         attr_reader :http_client, :config
 
         def initialize(config)
@@ -85,6 +67,22 @@ module Blockcypher
           JSON.parse(body) 
         end
       end
+    end
+  end
+
+  class BadResponse < StandardError
+    def initialize(response)
+      @response = response
+    end
+
+    def message
+      "Http error #{@response.status} while calling '#{request_uri}'"
+    end
+
+    private 
+
+    def request_uri
+      "#{@response.header.request_uri.to_s}"
     end
   end
 end
