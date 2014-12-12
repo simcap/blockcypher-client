@@ -36,14 +36,14 @@ module Blockcypher
           filename_prefix = Digest::MD5.hexdigest "#{verb}#{base_uri}#{path}" 
           filepath = find_file(filename_prefix)
           MockResponse.new(filepath)
-        rescue 
-          raise "No mock response file #{filepath} for #{verb} call for #{base_uri}#{path}"
+        rescue => e
+          raise "Cannot found mock response file for #{verb.upcase} call for #{base_uri}#{path}. #{e.message}"
         end
 
         def find_file(prefix)
           files_with_prefix = File.join(__dir__, 'fixtures/mocked_responses', "#{prefix}*")
           matches = Dir.glob(files_with_prefix)
-          raise "No file starting with #{prefix}" if matches.empty?
+          raise "Expecting mock file to have prefix #{prefix}" if matches.empty?
           matches.first
         end
       end

@@ -1,3 +1,5 @@
+require 'json'
+
 module Blockcypher
   class Client
     module Api
@@ -6,6 +8,13 @@ module Blockcypher
       end
       alias_method :txs, :transactions
 
+      def new_transaction(inputs, outputs, value)
+        body = { inputs: [ {addresses: Array(inputs)} ], 
+                 outputs: [ {addresses: Array(outputs), value: value} ]}
+        new_call.post("/txs/new", body: body.to_json)
+      end
+      alias_method :new_tx, :new_transaction
+        
       def blocks(block_hash)
         new_call.get("/blocks/#{block_hash}")
       end
